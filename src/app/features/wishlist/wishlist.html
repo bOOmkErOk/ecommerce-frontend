@@ -1,0 +1,22 @@
+<div class="wishlist-container">
+  <div class="header">
+    <h1>Wishlist ({{ wishlistItems.length }})</h1>
+    <button class="btn-outline" (click)="moveAllToBag()">Move All To Bag</button>
+  </div>
+
+  <div class="product-grid">
+    <div class="wishlist-item-wrapper" *ngFor="let item of wishlistItems">
+      
+      <app-product-card 
+        [product]="item.product" 
+        [isWishlistPage]="true"
+        (addToCart)="onAddToCart($event)">
+      </app-product-card>
+
+      <button class="remove-favorite" (click)="handleRemove(item.product.id)">
+        <div [innerHTML]="trash"></div>
+      </button>
+      
+    </div>
+  </div>
+</div>

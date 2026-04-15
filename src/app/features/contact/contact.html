@@ -1,0 +1,38 @@
+<div class="contact-container">
+    <div class="contact-info">
+        <div class="info-block">
+            <div class="row">
+                <div [innerHTML]="homephone"></div>
+                <h3>Call To Us</h3>
+            </div>
+            <p>We are available 24/7, 7 days a week.</p>
+            <p>Phone: +995599749291</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="info-block">
+            <div class="row">
+                <div [innerHTML]="emaillogo"></div>
+                <h3>Write To Us</h3>
+            </div>
+            <p>Fill out our form and we will contact you within 24 hours.</p>
+            <p>Emails: customer@exclusive.com</p>
+            <p>Emails: support@exclusive.com</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <div class="form-row">
+            <input type="text" placeholder="Your Name *" [(ngModel)]="name" name="name" />
+            <input type="email" placeholder="Your Email *" [(ngModel)]="email" name="email" />
+            <input type="text" placeholder="Your Phone *" [(ngModel)]="phone" name="phone" />
+        </div>
+
+        <textarea placeholder="Your Message" [(ngModel)]="message" name="message"></textarea>
+
+        <div class="form-footer">
+            <button (click)="onSubmit()">Send Message</button>
+        </div>
+    </div>
+</div>

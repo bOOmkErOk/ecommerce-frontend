@@ -1,0 +1,55 @@
+<div class="product-card" routerLink="/products/{{ product.id }}">
+ <div class="card-upper-half">
+    <span *ngIf="product.discountPercent > 0" class="discount">
+      -{{ product.discountPercent }}%
+    </span>
+    
+    <button
+      class="wishlist-icon-btn"
+      *ngIf="!isWishlistPage && { fav: isFavorite$ | async } as state"
+      [class.active]="state.fav"
+      (mousedown)="$event.stopPropagation()"
+      (click)="$event.stopPropagation(); onToggleWishlist()"
+    >
+      <div class="icon" [innerHTML]="getHeartIcon(state.fav)"></div>
+    </button>
+
+    <img [src]="product.imageUrl" [alt]="product.title" />
+    <button
+      class="add-to-cart-btn"
+      (click)="$event.stopPropagation(); onAddToCart()"
+      [disabled]="product.stock === 0"
+    >
+      {{ product.stock === 0 ? "Out of Stock" : "Add To Cart" }}
+    </button>
+  </div>
+
+  <div class="card-info">
+    <h3>{{ product.title }}</h3>
+    <div class="prices">
+      <span class="red-price">
+        ${{
+          product.discountPercent > 0
+            ? (getDiscountedPrice() | number: "1.2-2")
+            : product.price
+        }}
+      </span>
+      <span *ngIf="product.discountPercent > 0" class="gray-price">
+        ${{ product.price }}
+      </span>
+    </div>
+    <div class="stars-display">
+      <span *ngFor="let star of getStars()">
+        <span *ngIf="star <= product.averageRating" class="filled">★</span>
+        <span
+          *ngIf="
+            star > product.averageRating && star - 0.5 <= product.averageRating
+          "
+          class="half"
+          >★</span
+        >
+        <span *ngIf="star - 0.5 > product.averageRating" class="empty">★</span>
+      </span>
+    </div>
+  </div>
+</div>

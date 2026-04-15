@@ -1,0 +1,112 @@
+<div class="navbar-fill">
+  <div class="navbar">
+    <div
+      class="mobile-toggle"
+      [class.active]="mobileMenuOpen"
+      (click)="mobileMenuOpen = !mobileMenuOpen"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="title">
+      <h1 routerLink="/home">Exclusive</h1>
+    </div>
+
+    <div class="routes" [class.open]="mobileMenuOpen">
+      <div class="search-wrapper mobile-only">
+        <input
+          placeholder="What are you looking for?"
+          type="text"
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+        <ng-container *ngTemplateOutlet="searchResultsTpl"></ng-container>
+      </div>
+
+      <a routerLink="/home" (click)="mobileMenuOpen = false">Home</a>
+      <a routerLink="/contact" (click)="mobileMenuOpen = false">Contact</a>
+      <a routerLink="/about" (click)="mobileMenuOpen = false">About</a>
+      @if (!authService.isLoggedIn()) {
+        <a routerLink="/register" (click)="mobileMenuOpen = false">Sign Up</a>
+      }
+    </div>
+
+    <div class="redirects">
+      <div class="search-wrapper desktop-only">
+  <input
+    placeholder="What are you looking for?"
+    type="text"
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+  />
+  <div class="search-icon" [innerHTML]="search"></div>
+  
+  <ng-container *ngTemplateOutlet="searchResultsTpl"></ng-container>
+</div>
+
+      @if (authService.isLoggedIn()) {
+        <div class="icon" routerLink="/wishlist" [innerHTML]="heart"></div>
+      }
+      <div class="icon" routerLink="/cart" [innerHTML]="cart"></div>
+
+      @if (authService.isLoggedIn()) {
+        <div class="user-menu">
+          <div
+            class="user-icon"
+            [class.active]="dropdownOpen"
+            (click)="toggleDropdown()"
+          >
+            <div [innerHTML]="user"></div>
+          </div>
+
+          @if (dropdownOpen) {
+            <div class="dropdown">
+              <a routerLink="/profile" (click)="dropdownOpen = false">
+                <div [innerHTML]="user"></div>
+                Manage My Account
+              </a>
+              <a routerLink="/orders" (click)="dropdownOpen = false">
+                <div [innerHTML]="orders"></div>
+                My Order
+              </a>
+              <a (click)="logout()">
+                <div [innerHTML]="logoutIcon"></div>
+                Logout
+              </a>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<ng-template #searchResultsTpl>
+  @if (showResults && searchResults.length > 0) {
+    <div class="search-results">
+      @for (product of searchResults; track product.id) {
+        <div class="search-item" (click)="goToProduct(product.id)">
+          <img [src]="product.imageUrl" [alt]="product.title" />
+          <div class="search-item-info">
+            <p>{{ product.title }}</p>
+            <div class="price-container">
+              <span class="discounted-price">
+                ${{ getDiscountedPrice(product) | number: "1.2-2" }}
+              </span>
+              @if (product.discountPercent > 0) {
+                <span class="original-price">${{ product.price }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+  @if (showResults && searchResults.length === 0) {
+    <div class="search-results">
+      <p class="no-results">No products found</p>
+    </div>
+  }
+</ng-template>

@@ -1,0 +1,229 @@
+h1, h2, h3, h4, p { margin: 0; }
+
+.profile-container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    .sidebar {
+        width: 220px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            h4 {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+                font-size: 14px;
+                padding-left: 16px;
+                opacity: 0.5;
+                transition: opacity 0.2s;
+
+                &.active {
+                    color: #99AD7A;
+                    opacity: 1;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .profile-content {
+        flex: 1;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        border-radius: 4px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        background-color: #fff;
+
+        h3 {
+            font-size: 20px;
+            color: #99AD7A;
+            font-weight: 500;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+
+            .form-group {
+                flex: 1;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            label {
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            input {
+                padding: 12px 16px;
+                background-color: #F5F5F5;
+                border: none;
+                border-radius: 4px;
+                outline: none;
+                font-size: 14px;
+                width: 100%;
+                box-sizing: border-box;
+
+                &:focus {
+                    background-color: #eee;
+                }
+            }
+        }
+
+        .password-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 8px;
+
+            h4 {
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
+        .error { color: #DB4444; font-size: 14px; }
+        .success { color: green; font-size: 14px; }
+
+        .form-actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 8px;
+
+            .cancel-btn, .save-btn {
+                padding: 12px 32px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.2s;
+            }
+
+            .cancel-btn {
+                background: none;
+                border: 1px solid #ccc;
+                color: #000;
+
+                &:hover {
+                    background-color: #f5f5f5;
+                }
+            }
+
+            .save-btn {
+                background-color: #99AD7A;
+                color: #fff;
+                border: none;
+
+                &:hover {
+                    background-color: #c13333;
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .profile-container {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 20px;
+
+        .sidebar {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+            .sidebar-section {
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+
+                h4 { margin-right: 10px; }
+                a { padding-left: 0; }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        .profile-content {
+            padding: 24px;
+            box-shadow: none;
+            border: 1px solid #eee;
+
+            .form-row {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        .sidebar .sidebar-section {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .profile-content .form-actions {
+            flex-direction: column;
+            
+            .cancel-btn, .save-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .save-btn {
+                order: -1;
+            }
+        }
+    }
+}
+
+.field-error {
+    color: #DB4444;
+    font-size: 12px;
+    margin-top: 4px;
+}

@@ -1,0 +1,38 @@
+<div class="register-container">
+
+  <div class="image">
+    <img src="/registerWelcome.png" alt="">
+  </div>
+
+
+
+  <div class="form">
+    <div class="intro">
+      <h1>Create an account</h1>
+      <p>Enter your details below</p>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" placeholder="Name" [(ngModel)]="request.name" name="name" required />
+      <input type="email" placeholder="Email" [(ngModel)]="request.email" name="email" required />
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password"
+          [(ngModel)]="request.password"
+          name="password"
+          required
+        />
+        <span (click)="togglePassword()" [innerHTML]="showPassword ? eyeOff : eye"></span>
+      </div>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="request.phoneNumber" name="phoneNumber" required />
+
+      <app-error-message [message]="error" />
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Registering...' : 'Create Account' }}
+      </button>
+    </form>
+
+    <p>Already have an account? <a routerLink="/login">Log in</a></p>
+  </div>
+</div>

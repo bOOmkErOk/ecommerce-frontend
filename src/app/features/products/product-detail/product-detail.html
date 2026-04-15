@@ -1,0 +1,123 @@
+<div class="product-detail-container">
+  <div *ngIf="isLoading">Loading...</div>
+
+  <ng-container *ngIf="!isLoading && product">
+    <div class="product-layout">
+      <div class="product-image">
+        <img [src]="selectedImage" [alt]="product.title" />
+      </div>
+
+      <div class="product-info">
+        <div class="upper-section">
+          <div class="left-side">
+            <h1>{{ product.title }}</h1>
+
+            <div class="rating">
+              <div class="stars-display">
+                <span *ngFor="let star of getStars()" class="star-display">
+                  <span *ngIf="star <= product.averageRating" class="filled"
+                    >★</span
+                  >
+                  <span
+                    *ngIf="
+                      star > product.averageRating &&
+                      star - 0.5 <= product.averageRating
+                    "
+                    class="half"
+                    >★</span
+                  >
+                  <span *ngIf="star - 0.5 > product.averageRating" class="empty"
+                    >★</span
+                  >
+                </span>
+              </div>
+              <span class="stock" [class.in-stock]="product.stock > 0">
+                {{ product.stock > 0 ? "In Stock" : "Out of Stock" }}
+              </span>
+            </div>
+
+            <h2 class="price">
+              <span *ngIf="product.discountPercent > 0" class="discounted">
+                ${{ getDiscountedPrice() | number: "1.2-2" }}
+              </span>
+              <span *ngIf="product.discountPercent === 0">
+                ${{ product.price | number: "1.2-2" }}
+              </span>
+              <span *ngIf="product.discountPercent > 0" class="original">
+                ${{ product.price | number: "1.2-2" }}
+              </span>
+            </h2>
+
+            <p class="description">{{ product.description }}</p>
+          </div>
+
+          <div class="right-side">
+            <div class="rating-section" *ngIf="hasBought && !hasRated">
+              <h4>Rate this product</h4>
+              <div class="stars">
+                <span
+                  *ngFor="let star of [1, 2, 3, 4, 5]"
+                  (click)="setRating(star)"
+                  (mouseenter)="hoveredRating = star"
+                  (mouseleave)="hoveredRating = 0"
+                  [class.selected]="star <= (hoveredRating || selectedRating)"
+                  class="star"
+                >
+                  ★
+                </span>
+              </div>
+              <button
+                class="submit-rating-btn"
+                (click)="submitRating()"
+                [disabled]="selectedRating === 0"
+              >
+                Submit Rating
+              </button>
+              <p *ngIf="ratingError" class="error">{{ ratingError }}</p>
+            </div>
+
+            <div class="rating-section" *ngIf="hasRated">
+              <p class="success">{{ ratingSuccess }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="quantity-section">
+          <div class="quantity-control">
+            <button class="decrease" (click)="decreaseQuantity()">-</button>
+            <span>{{ quantity }}</span>
+            <button class="increase" (click)="increaseQuantity()">+</button>
+          </div>
+          <button
+            class="buy-btn"
+            (click)="addToCart()"
+            [disabled]="product.stock === 0"
+          >
+            {{ product.stock === 0 ? "Out of Stock" : "Add To Cart" }}
+          </button>
+        </div>
+        <app-error-message [message]="stockWarning" />
+        <app-error-message [message]="addToCartError" />
+
+        <div class="delivery-info">
+          <div class="delivery-item">
+            <div [innerHTML]="delivery"></div>
+            <div>
+              <p>Free Delivery</p>
+              <small>Enter your postal code for Delivery Availability</small>
+            </div>
+          </div>
+          <div class="delivery-item">
+            <div [innerHTML]="return"></div>
+            <div>
+              <p>Return Delivery</p>
+              <small>Free 30 Days Delivery Returns.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

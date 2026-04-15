@@ -1,0 +1,23 @@
+<div class="category-container">
+  <div class="upper-section">
+    <div class="badge-container">
+      <div class="red-cube"></div>
+      <h3>Categories</h3>
+    </div>
+    <h1>{{ categoryTitle | titlecase }}</h1>
+  </div>
+
+  <div *ngIf="isLoading" class="info-text">Loading products...</div>
+
+  <div class="products-grid" *ngIf="!isLoading">
+    <app-product-card
+      *ngFor="let product of filteredProducts"
+      [product]="product"
+      (addToCart)="handleAddToCart($event)">
+    </app-product-card>
+  </div>
+  
+  <div *ngIf="!isLoading && filteredProducts.length === 0" class="info-text">
+    <p>No products found in {{ categoryTitle }}.</p>
+  </div>
+</div>

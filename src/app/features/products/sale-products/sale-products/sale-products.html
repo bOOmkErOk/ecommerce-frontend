@@ -1,0 +1,23 @@
+<div class="fill">
+  <div class="upper-half">
+    <div class="todays-flash">
+      <div class="cube"></div>
+      <h3>Today's</h3>
+    </div>
+    <h2>Flash Sales</h2>
+  </div>
+
+  <div *ngIf="isLoading">Loading...</div>
+
+  <div class="products-row">
+    <app-product-card
+      *ngFor="let product of saleProducts"
+      [product]="product"
+      (addToCart)="onAddToCart($event)">
+    </app-product-card>
+  </div>
+
+<div class="button">
+    <button routerLink="/all-sale-products" >View All Products</button>
+</div>
+</div>

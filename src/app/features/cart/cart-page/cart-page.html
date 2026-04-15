@@ -1,0 +1,60 @@
+<div class="cart-container">
+  <div *ngIf="isLoading">Loading...</div>
+
+  <ng-container *ngIf="!isLoading && cart">
+
+    <div class="cart-header">
+      <span>Product</span>
+      <span>Price</span>
+      <span>Quantity</span>
+      <span>Subtotal</span>
+    </div>
+
+    <div class="cart-items">
+      <div *ngFor="let item of cart.items" class="cart-row">
+        <div routerLink="/products/{{item.product.id}}" class="product-cell">
+          <img [src]="item.product.imageUrl" [alt]="item.product.title" />
+          <span>{{ item.product.title }}</span>
+        </div>
+        <span>${{ item.product.price }}</span>
+        <div class="quantity-control">
+          <button (click)="updateQuantity(item.id, item.quantity - 1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item.id, item.quantity + 1)">+</button>
+        </div>
+        <div class="subtotal-cell">
+          <span>${{ getItemPrice(item.product) * item.quantity | number:'1.2-2' }}</span>
+          <button class="remove-btn" (click)="removeItem(item.id)">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-actions">
+      <a routerLink="/home">Return To Shop</a>
+      <div class="cart-bottom">
+        <div class="cart-total">
+          <h3>Cart Total</h3>
+          <div class="total-row">
+            <span>Subtotal:</span>
+            <span>${{ getSubtotal() | number:'1.2-2' }}</span>
+          </div>
+          <div class="total-row">
+            <span>Shipping:</span>
+            <span>Free</span>
+          </div>
+          <div class="total-row">
+            <span>Total:</span>
+            <span>${{ getSubtotal() | number:'1.2-2' }}</span>
+          </div>
+          <button class="checkout-btn" routerLink="/checkout">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+
+
+  </ng-container>
+
+  <div *ngIf="!isLoading && (!cart || cart.items.length === 0)">
+    <p>Your cart is empty!</p>
+  </div>
+</div>

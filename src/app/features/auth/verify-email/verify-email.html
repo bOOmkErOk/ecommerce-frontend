@@ -1,0 +1,31 @@
+<div class="auth-container">
+  <div class="image">
+    <img src="/registerWelcome.png" alt="Register Welcome" />
+  </div>
+
+  <div class="form">
+    <div class="intro">
+      <h1>Verify Your Email</h1>
+      <p>Enter the 6-digit code sent to <strong>{{ email }}</strong></p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <input
+        type="text"
+        placeholder="6-Digit Code"
+        [(ngModel)]="code"
+        name="code"
+        maxlength="6"
+        required
+      />
+
+      <p *ngIf="error" class="error-message">{{ error }}</p>
+
+      <button type="submit" [disabled]="isLoading || code.length < 6">
+        {{ isLoading ? 'Verifying...' : 'Verify' }}
+      </button>
+    </form>
+
+    <p>Didn't receive a code? <a routerLink="/register">Try again</a></p>
+  </div>
+</div>

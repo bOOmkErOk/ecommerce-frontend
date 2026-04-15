@@ -1,0 +1,29 @@
+<div class="advertisement">
+    <div class="left-side">
+        <h3>Categories</h3>
+        <h1>{{ sponsoredProduct?.title }}</h1>
+        <div class="timer">
+            <div class="time-block">
+                <span>{{ days | number:'2.0' }}</span>
+                <p>Days</p>
+            </div>
+            <div class="time-block">
+                <span>{{ hours | number:'2.0' }}</span>
+                <p>Hours</p>
+            </div>
+            <div class="time-block">
+                <span>{{ minutes | number:'2.0' }}</span>
+                <p>Minutes</p>
+            </div>
+            <div class="time-block">
+                <span>{{ seconds | number:'2.0' }}</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+        <button [routerLink]="['/products', sponsoredProduct?.id]">Buy Now!</button>
+    </div>
+
+    <div class="right-side">
+        <img [src]="sponsoredProduct?.imageUrl" [alt]="sponsoredProduct?.title">
+    </div>
+</div>

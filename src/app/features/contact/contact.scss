@@ -1,0 +1,175 @@
+h1, h2, h3, p {
+    margin: 0;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 140px auto 80px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    .contact-info {
+        width: 340px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 40px 35px;
+        display: flex;
+        flex-direction: column;
+        background-color: #DCCCAC;
+        gap: 32px;
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+
+            div:first-child { 
+                background-color: #546B41;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+
+                ::ng-deep svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            h3 { font-size: 16px; font-weight: 500; }
+            p { font-size: 14px; line-height: 21px; }
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .contact-form {
+        flex: 1;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 40px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+background-color: #DCCCAC;
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+
+            input {
+                flex: 1;
+                padding: 13px 16px;
+                background-color: #FFF8EC;
+                border: none;
+                border-radius: 4px;
+                font-size: 14px;
+                width: 100%;
+                outline: none;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 13px 16px;
+            background-color: #FFF8EC;
+            border: none;
+            border-radius: 4px;
+            resize: none;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                background-color: #546B41;
+                color: #fff;
+                border: none;
+                padding: 16px 48px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: 0.2s;
+
+                &:hover { background-color: #7A9160; }
+            }
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .contact-container {
+        flex-direction: column;
+        margin-top: 60px;
+        
+        .contact-info {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-sizing: border-box;
+
+            .divider {
+                width: 1px;
+                height: 150px;
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .contact-container .contact-info {
+        flex-direction: column;
+        gap: 32px;
+
+        .divider {
+            width: 100%;
+            height: 1px;
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .contact-container .contact-form {
+        padding: 30px 20px;
+        box-sizing: border-box;
+input {
+    width: auto;
+    box-sizing: border-box;
+}
+        .form-row {
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-footer {
+            justify-content: center;
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

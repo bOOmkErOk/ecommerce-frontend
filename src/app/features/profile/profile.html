@@ -1,0 +1,91 @@
+<div class="profile-container">
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <h4>Manage My Account</h4>
+      <a routerLink="/profile" class="active">My Profile</a>
+      <a routerLink="/orders">My Orders</a>
+      <a routerLink="/cancelled-orders">My Cancellations</a>
+    </div>
+  </div>
+
+  <div class="profile-content">
+    <div *ngIf="isLoading">Loading...</div>
+
+    <ng-container *ngIf="!isLoading">
+      <h3>Edit Your Profile</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="name" name="name" />
+          <app-error-message [message]="nameError" />
+        </div>
+  
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="email" name="email" />
+          <app-error-message [message]="emailError" />
+        </div>
+
+        @if (email !== user?.email) {
+          <div class="form-group">
+            <label>Current Password (required to change email)</label>
+            <input
+              type="password"
+              [(ngModel)]="currentPasswordForEmail"
+              name="currentPasswordForEmail"
+            />
+            <app-error-message [message]="currentPasswordForEmailError" />
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" [(ngModel)]="phoneNumber" name="phoneNumber" />
+        <span *ngIf="phoneError" class="field-error">{{ phoneError }}</span>
+      </div>
+
+      <div class="password-section">
+        <h4>Password Changes</h4>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="Current Password"
+            [(ngModel)]="currentPassword"
+            name="currentPassword"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="New Password"
+            [(ngModel)]="newPassword"
+            name="newPassword"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="Confirm New Password"
+            [(ngModel)]="confirmNewPassword"
+            name="confirmNewPassword"
+          />
+          <span *ngIf="passwordError" class="field-error">{{
+            passwordError
+          }}</span>
+        </div>
+      </div>
+
+      <p *ngIf="error" class="error">{{ error }}</p>
+      <p *ngIf="success" class="success">{{ success }}</p>
+
+      <div class="form-actions">
+        <button class="cancel-btn" routerLink="/home">Cancel</button>
+        <button class="save-btn" (click)="saveChanges()" [disabled]="isSaving">
+          {{ isSaving ? "Saving..." : "Save Changes" }}
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

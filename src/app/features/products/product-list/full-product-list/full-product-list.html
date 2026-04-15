@@ -1,0 +1,19 @@
+<div class="products-container">
+  <div class="upper-half">
+    <div class="our-products">
+      <div class="cube"></div>
+      <h3>Our Products</h3>
+    </div>
+    <h1>All Products</h1>
+  </div>
+
+  <div *ngIf="isLoading">Loading...</div>
+
+  <div class="products-grid">
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product"
+      (addToCart)="onAddToCart($event)">
+    </app-product-card>
+  </div>
+</div>

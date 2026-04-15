@@ -1,0 +1,49 @@
+<div class="new-arrival">
+    <div class="upper-side">
+        <div class="featured">
+            <div class="cube">
+
+            </div>
+            <h3>Featured</h3>
+        </div>
+        <h1>New Arrival</h1>
+    </div>
+    <div class="lower-side">
+        <div class="main-arrival">
+            <img [src]="newArrivals[0]?.imageUrl" alt="">
+            <div class="overlay">
+                <h1>{{ newArrivals[0]?.title }}</h1>
+                <p>{{ newArrivals[0]?.description }}</p>
+                <a [routerLink]="['/products', newArrivals[0]?.id]">Shop Now</a>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="upper-side1">
+                <img [src]="newArrivals[1]?.imageUrl" alt="">
+            <div class="overlay">
+                <h1>{{ newArrivals[1]?.title }}</h1>
+                <p>{{ newArrivals[1]?.description }}</p>
+                <a [routerLink]="['/products', newArrivals[1]?.id]">Shop Now</a>
+            </div>
+            </div>
+            <div class="lower-side1">
+                <div class="left-side1">
+                    <img [src]="newArrivals[2]?.imageUrl" alt="">
+                    <div class="overlay a">
+                        <h1>{{ newArrivals[2]?.title }}</h1>
+                        <p>{{ newArrivals[2]?.description }}</p>
+                        <a [routerLink]="['/products', newArrivals[2]?.id]">Shop Now</a>
+                    </div>
+                </div>
+                <div class="right-side1">
+                    <img [src]="newArrivals[3]?.imageUrl" alt="">
+                    <div class="overlay a">
+                        <h1>{{ newArrivals[3]?.title }}</h1>
+                        <p>{{ newArrivals[3]?.description }}</p>
+                        <a [routerLink]="['/products', newArrivals[3]?.id]">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

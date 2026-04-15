@@ -1,0 +1,148 @@
+.footer {
+  background-color: #000;
+  color: #fff;
+  padding: 80px 0 24px 0;
+  margin-top: 140px;
+  font-family: 'Poppins', sans-serif;
+
+ .footer-container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 40px;
+  
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 87px;
+
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 0 30px;
+  }
+
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    padding: 0 24px;
+    text-align: left;
+  }
+}
+
+  .footer-column {
+
+    width: 100%;
+    min-width: 0;
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    p,
+    address {
+      font-size: 16px;
+      color: #fafafa;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      font-style: normal;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 16px;
+
+        a {
+          color: #fafafa;
+          text-decoration: none;
+          transition: 0.3s;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+
+  .email-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #fff;
+    border-radius: 4px;
+    padding: 12px;
+    max-width: 240px;
+
+    input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      outline: none;
+      width: 100%;
+
+      &::placeholder {
+        color: #7d7d7d;
+      }
+    }
+
+    .send-icon {
+      height: 24px;
+      width: 24px;
+      cursor: pointer;
+    }
+  }
+
+  .app-links-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+
+    .qr-code img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .store-buttons img {
+      display: block;
+      width: 110px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+  }
+
+  .social-links {
+    display: flex;
+    gap: 24px;
+    font-size: 20px;
+
+    i {
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+    text-align: center;
+    opacity: 0.4;
+    font-size: 14px;
+  }
+}

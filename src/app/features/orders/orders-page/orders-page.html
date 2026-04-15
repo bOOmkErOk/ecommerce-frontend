@@ -1,0 +1,68 @@
+<div class="orders-container">
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <h4>Manage My Account</h4>
+      <a routerLink="/profile">My Profile</a>
+      <a routerLink="/orders" class="active">My Orders</a>
+      <a routerLink="/cancelled-orders">My Cancellations</a>
+    </div>
+  </div>
+
+  <div class="orders-content">
+    <h3>My Orders</h3>
+
+    <div *ngIf="isLoading">Loading...</div>
+
+    <div *ngIf="!isLoading && orders.length === 0" class="empty">
+      <p>No orders yet!</p>
+      <a routerLink="/products">Start Shopping</a>
+    </div>
+
+    <div class="orders-list" *ngIf="!isLoading && orders.length > 0">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-header">
+          <div class="order-meta">
+            <span class="order-id">#{{ order.id }}</span>
+            <span class="order-date">{{
+              order.createdAt | date: "mediumDate"
+            }}</span>
+          </div>
+          <div class="order-right">
+            <span class="status" [class]="order.status.toLowerCase()">
+              {{ order.status }}
+            </span>
+            <button
+              *ngIf="order.status.toLowerCase() === 'pending'"
+              class="cancel-btn"
+              (click)="cancelOrder(order.id)"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="order-items">
+          <div *ngFor="let item of order.orderItems" class="order-item">
+            <img [src]="item.product.imageUrl" [alt]="item.product.title" />
+            <div class="item-info">
+              <p>{{ item.product.title }}</p>
+              <p>Qty: {{ item.quantity }}</p>
+            </div>
+            <span>
+              ${{
+                getItemPrice(item.product) * item.quantity | number: "1.2-2"
+              }}
+            </span>
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <span
+            >Total:
+            <strong>${{ getOrderTotal(order) | number: "1.2-2" }}</strong></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

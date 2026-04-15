@@ -1,0 +1,42 @@
+<div class="categories-fill">
+    <div class="upper-half">
+        <div class="our-categories">
+            <div class="cube">
+
+            </div>
+            <h3>Categories</h3>
+        </div>
+        <h1>Browse By Category</h1>
+    </div>
+   <div class="categories">
+    <div class="categorie" [routerLink]="['/category', 'phones']">
+        <div [innerHTML]="phone"></div>
+        <h2>Phones</h2>
+    </div>
+
+    <div class="categorie" [routerLink]="['/category', 'computers']">
+        <div [innerHTML]="computer"></div>
+        <h2>Computers</h2>
+    </div>
+
+    <div class="categorie" [routerLink]="['/category', 'smartwatch']">
+        <div [innerHTML]="smartwatch"></div>
+        <h2>SmartWatch</h2>
+    </div>
+
+    <div class="categorie" [routerLink]="['/category', 'camera']">
+        <div [innerHTML]="camera"></div>
+        <h2>Camera</h2>
+    </div>
+
+    <div class="categorie" [routerLink]="['/category', 'headphones']">
+        <div [innerHTML]="headphones"></div>
+        <h2>HeadPhones</h2>
+    </div>
+
+    <div class="categorie" [routerLink]="['/category', 'gaming']">
+        <div [innerHTML]="gaming"></div>
+        <h2>Gaming</h2>
+    </div>
+</div>
+</div>

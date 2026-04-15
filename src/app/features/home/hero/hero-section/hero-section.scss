@@ -1,0 +1,131 @@
+.hero {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 15px;
+
+  .categories-fill {
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 40px 24px 0 0;
+    flex-shrink: 0;
+
+    .categories {
+      width: 217px;
+      
+      ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 16px;
+
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+          transition: transform 0.2s;
+          &:hover { transform: translateX(5px); }
+        }
+        a { color: #000; text-decoration: none; font-size: 16px; }
+      }
+    }
+  }
+
+  .advertising {
+    flex: 1;
+    min-width: 0; 
+    padding: 40px 0 0 45px;
+    display: flex;
+    flex-direction: column;
+
+    .swiper {
+      width: 100%;
+      height: 344px;
+      background: #000;
+      --swiper-pagination-color: #546B41;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+
+    .categories-fill {
+      border-right: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      width: 100%;
+
+      .categories {
+        width: 100%;
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding: 0 20px 15px 20px;
+          gap: 24px;
+          box-sizing: border-box;
+          -webkit-overflow-scrolling: touch;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+
+          li {
+            flex: 0 0 auto;
+            
+            a {
+              white-space: nowrap;
+              font-size: 14px;
+            }
+
+            svg {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .advertising {
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+
+      .swiper {
+        width: 100%;
+        max-width: 1170px;
+        height: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    .advertising {
+      .swiper {
+        height: 180px;
+      }
+    }
+  }
+}

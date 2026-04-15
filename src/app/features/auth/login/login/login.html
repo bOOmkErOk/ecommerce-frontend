@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="image">
+    <img src="/registerWelcome.png" alt="" />
+  </div>
+
+  <div class="form">
+    <div class="intro">
+      <h1>Log in to Exclusive</h1>
+      <p>Enter your details below</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="request.email"
+        name="email"
+        required
+      />
+      <div class="password-wrapper">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password"
+          [(ngModel)]="request.password"
+          name="password"
+          required
+        />
+        <span (click)="togglePassword()" [innerHTML]="showPassword ? eyeOff : eye"></span>
+      </div>
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? "Logging in..." : "Log In" }}
+      </button>
+    </form>
+
+    <p>Don't have an account? <a routerLink="/register">Register</a></p>
+    <a routerLink="/forgot-password">Forgot Password?</a>
+  </div>
+</div>
